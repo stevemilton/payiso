@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayISO — Payment Processing for Unique Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Warmer, more approachable palette */
+            --color-bg: #fafbfc;
+            --color-bg-warm: #f5f3f0;
+            --color-bg-card: #ffffff;
+            --color-bg-dark: #1a1f2e;
+            --color-primary: #2563eb;
+            --color-primary-light: #3b82f6;
+            --color-primary-dim: rgba(37, 99, 235, 0.08);
+            --color-primary-glow: rgba(37, 99, 235, 0.2);
+            --color-accent: #10b981;
+            --color-accent-dim: rgba(16, 185, 129, 0.1);
+            --color-warm: #f59e0b;
+            --color-warm-dim: rgba(245, 158, 11, 0.1);
+            --color-text: #1a1f2e;
+            --color-text-muted: #64748b;
+            --color-text-dim: #94a3b8;
+            --color-border: rgba(0, 0, 0, 0.08);
+            --color-border-active: rgba(37, 99, 235, 0.3);
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 6rem;
+            --spacing-2xl: 10rem;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.15;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: var(--spacing-sm) 0;
+            background: rgba(250, 251, 252, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .logo-mark {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-xs);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--color-primary-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-text-muted);
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        .btn-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: var(--spacing-2xl) 0 var(--spacing-xl);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-warm) 100%);
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .hero-shape-1 {
+            top: 10%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--color-primary-dim) 0%, transparent 70%);
+            animation: float1 8s ease-in-out infinite;
+        }
+
+        .hero-shape-2 {
+            bottom: 20%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--color-accent-dim) 0%, transparent 70%);
+            animation: float2 10s ease-in-out infinite;
+        }
+
+        .hero-shape-3 {
+            top: 40%;
+            right: 30%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--color-warm-dim) 0%, transparent 70%);
+            animation: float3 6s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, 20px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -15px); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-15px, -20px); }
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-badge-icon {
+            font-size: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.75rem, 5vw, 4rem);
+            margin-bottom: var(--spacing-md);
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            max-width: 500px;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-trust {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-trust-avatars {
+            display: flex;
+        }
+
+        .hero-trust-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-left: -10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .hero-trust-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .hero-trust-text {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .hero-trust-text strong {
+            color: var(--color-text);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-card-main {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border);
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-card-title {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .hero-card-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--color-accent-dim);
+            color: var(--color-accent);
+            padding: 0.35rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .hero-card-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .hero-card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-card-stat {
+            padding: var(--spacing-sm);
+            background: var(--color-bg);
+            border-radius: var(--radius-md);
+        }
+
+        .hero-card-stat-value {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            color: var(--color-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-card-stat-label {
+            font-size: 0.8rem;
+            color: var(--color-text-dim);
+        }
+
+        .hero-card-chart {
+            height: 80px;
+            background: linear-gradient(to top, var(--color-primary-dim) 0%, transparent 100%);
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card-chart-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--color-primary) 10%, 
+                var(--color-primary) 30%, 
+                var(--color-primary-light) 50%, 
+                var(--color-primary) 70%, 
+                var(--color-primary) 90%, 
+                transparent 100%);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 100' preserveAspectRatio='none'%3E%3Cpath d='M0,80 Q50,70 100,75 T200,60 T300,65 T400,40' stroke='black' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+            mask-size: 100% 100%;
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-sm) var(--spacing-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+            animation: float1 5s ease-in-out infinite;
+        }
+
+        .hfc-1 {
+            top: -20px;
+            right: -30px;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .hfc-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .hfc-icon-green {
+            background: var(--color-accent-dim);
+        }
+
+        .hfc-icon-blue {
+            background: var(--color-primary-dim);
+        }
+
+        .hfc-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hfc-2 {
+            bottom: 40px;
+            left: -40px;
+            animation-delay: -2s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Why Section */
+        .why {
+            padding: var(--spacing-xl) 0 var(--spacing-2xl);
+        }
+
+        .why-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .why h2 {
+            font-size: clamp(2.25rem, 4vw, 3rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .why-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+        }
+
+        .why-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .why-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-border-active);
+        }
+
+        .why-card-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--color-primary-dim);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+        }
+
+        .why-card-icon-accent {
+            background: var(--color-accent-dim);
+        }
+
+        .why-card-icon-warm {
+            background: var(--color-warm-dim);
+        }
+
+        .why-card h3 {
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .why-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* How It Works */
+        .how {
+            padding: var(--spacing-2xl) 0;
+            background: var(--color-bg-warm);
+        }
+
+        .how-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .how h2 {
+            font-size: clamp(2.25rem, 4vw, 3rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .how-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .how-step {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        .how-step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin: 0 auto var(--spacing-md);
+        }
+
+        .how-step h3 {
+            font-family: var(--font-body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .how-step p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Who We Help */
+        .personas {
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .personas-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .personas h2 {
+            font-size: clamp(2.25rem, 4vw, 3rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .personas-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+        }
+
+        .persona-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-lg);
+            padding: 0.35rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .persona-tab {
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            background: transparent;
+        }
+
+        .persona-tab:hover {
+            color: var(--color-text);
+        }
+
+        .persona-tab.active {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .persona-content {
+            display: none;
+        }
+
+        .persona-content.active {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .persona-info {
+            padding: var(--spacing-md);
+        }
+
+        .persona-label {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            padding: 0.35rem 0.75rem;
+            background: var(--color-primary-dim);
+            border-radius: 100px;
+        }
+
+        .persona-name {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .persona-desc {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .persona-needs {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .persona-needs h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .persona-needs-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .persona-needs-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+        }
+
+        .persona-needs-list li::before {
+            content: '→';
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .persona-cta {
+            display: inline-flex;
+        }
+
+        .persona-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .persona-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .persona-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .persona-card-title {
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .persona-card-subtitle {
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+        }
+
+        .persona-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .persona-benefit {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-start;
+        }
+
+        .persona-benefit-check {
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            background: var(--color-accent-dim);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-accent);
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .persona-benefit h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .persona-benefit p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--spacing-2xl) 0;
+            background: var(--color-bg-dark);
+            color: white;
+        }
+
+        .features-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .features .section-label {
+            color: var(--color-accent);
+        }
+
+        .features h2 {
+            font-size: clamp(2.25rem, 4vw, 3rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .features-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.25rem;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-xl);
+        }
+
+        .testimonials h2 {
+            font-size: clamp(2.25rem, 4vw, 3rem);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        .testimonial-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-warm);
+        }
+
+        .testimonial-quote {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-muted);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .testimonial-info h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-info p {
+            font-size: 0.8rem;
+            color: var(--color-text-dim);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: var(--spacing-2xl) 0;
+            background: linear-gradient(135deg, var(--color-bg-warm) 0%, var(--color-bg) 100%);
+        }
+
+        .cta-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta-subtitle {
+            font-size: 1.15rem;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-lg);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .cta-feature-icon {
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            background: var(--color-bg-dark);
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-brand .logo {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-bottom a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid,
+            .persona-content.active {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .hero-visual {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .why-cards,
+            .how-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas,
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .persona-tabs {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .cta-features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <span class="logo-mark">P</span>
+                PayISO
+            </a>
+            <ul class="nav-links">
+                <li><a href="#why">Why PayISO</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#personas">Who We Help</a></li>
+                <li><a href="#features">Features</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-secondary">Sign In</a>
+                <a href="#cta" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-shapes">
+                <div class="hero-shape hero-shape-1"></div>
+                <div class="hero-shape hero-shape-2"></div>
+                <div class="hero-shape hero-shape-3"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="hero-badge-icon">🤝</span>
+                        Your payment partner, not just a processor
+                    </div>
+                    <h1>Payments made simple for <em>unique</em> businesses.</h1>
+                    <p class="hero-subtitle">Whether you're on Shopify looking for alternatives, building on WooCommerce, or running a subscription business—we're here to help you grow.</p>
+                    <div class="hero-ctas">
+                        <a href="#cta" class="btn btn-primary btn-large">
+                            Let's Talk
+                            <span class="btn-arrow">→</span>
+                        </a>
+                        <a href="#how" class="btn btn-secondary btn-large">See How It Works</a>
+                    </div>
+                    <div class="hero-trust">
+                        <div class="hero-trust-avatars">
+                            <div class="hero-trust-avatar" style="background: #6366f1;">JR</div>
+                            <div class="hero-trust-avatar" style="background: #10b981;">AK</div>
+                            <div class="hero-trust-avatar" style="background: #f59e0b;">SM</div>
+                            <div class="hero-trust-avatar" style="background: #ec4899;">DP</div>
+                        </div>
+                        <p class="hero-trust-text"><strong>500+ merchants</strong> trust PayISO with their payments</p>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-card-main">
+                        <div class="hero-card-header">
+                            <span class="hero-card-title">Your Dashboard</span>
+                            <span class="hero-card-badge">
+                                <span class="hero-card-badge-dot"></span>
+                                All systems healthy
+                            </span>
+                        </div>
+                        <div class="hero-card-stats">
+                            <div class="hero-card-stat">
+                                <div class="hero-card-stat-value">$127,450</div>
+                                <div class="hero-card-stat-label">Processed this week</div>
+                            </div>
+                            <div class="hero-card-stat">
+                                <div class="hero-card-stat-value">98.7%</div>
+                                <div class="hero-card-stat-label">Approval rate</div>
+                            </div>
+                        </div>
+                        <div class="hero-card-chart">
+                            <div class="hero-card-chart-line"></div>
+                        </div>
+                    </div>
+                    <div class="hero-floating-card hfc-1">
+                        <div class="hfc-icon hfc-icon-green">✓</div>
+                        <span class="hfc-text">Payment approved</span>
+                    </div>
+                    <div class="hero-floating-card hfc-2">
+                        <div class="hfc-icon hfc-icon-blue">📊</div>
+                        <span class="hfc-text">Real-time analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why" id="why">
+        <div class="container">
+            <div class="why-header">
+                <span class="section-label">Why PayISO</span>
+                <h2>A partner who understands your business.</h2>
+                <p class="why-subtitle">Not every business fits the standard mold. We work with merchants who have unique needs, complex setups, or just want a more personal approach.</p>
+            </div>
+            <div class="why-cards">
+                <div class="why-card">
+                    <div class="why-card-icon">🎯</div>
+                    <h3>Built for Your Needs</h3>
+                    <p>Whether you need an alternative to Stripe, a reliable WooCommerce solution, or subscription-friendly processing—we tailor our approach to fit your business.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon why-card-icon-accent">🤝</div>
+                    <h3>Real Partnership</h3>
+                    <p>You'll work with a dedicated team who knows your business. When you call, a real person answers. When you need help, we're there.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon why-card-icon-warm">📈</div>
+                    <h3>Grow With Confidence</h3>
+                    <p>Clear pricing, reliable service, and the stability to plan ahead. No surprises—just the support you need to focus on what matters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how" id="how">
+        <div class="container">
+            <div class="how-header">
+                <span class="section-label">How It Works</span>
+                <h2>Getting started is easy.</h2>
+                <p class="how-subtitle">We've streamlined the process so you can focus on your business, not paperwork.</p>
+            </div>
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="how-step-number">1</div>
+                    <h3>Tell Us About Your Business</h3>
+                    <p>A quick conversation to understand your needs, goals, and what you're looking for in a payment partner.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">2</div>
+                    <h3>We Create Your Custom Plan</h3>
+                    <p>Transparent pricing and terms tailored to your business. No hidden fees, no surprises—just a fair deal.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">3</div>
+                    <h3>Simple Integration</h3>
+                    <p>Our team handles the technical setup. Whether Shopify, WooCommerce, or custom—we make it seamless.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-number">4</div>
+                    <h3>Ongoing Support</h3>
+                    <p>You're never on your own. Your dedicated rep is always a call away to help you succeed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Help -->
+    <section class="personas" id="personas">
+        <div class="container">
+            <div class="personas-header">
+                <span class="section-label">Who We Help</span>
+                <h2>Built for merchants like you.</h2>
+                <p class="personas-subtitle">We specialize in helping businesses with unique circumstances find the right payment solution.</p>
+            </div>
+            
+            <div class="persona-tabs">
+                <button class="persona-tab active" data-tab="shopify">Shopify Merchants</button>
+                <button class="persona-tab" data-tab="woocommerce">WooCommerce Stores</button>
+                <button class="persona-tab" data-tab="subscriptions">Subscription Businesses</button>
+            </div>
+
+            <!-- Shopify Persona -->
+            <div class="persona-content active" id="shopify">
+                <div class="persona-info">
+                    <span class="persona-label">💜 For Shopify Merchants</span>
+                    <h3 class="persona-name">Looking for alternatives?</h3>
+                    <p class="persona-desc">Whether Shopify Payments isn't available for your business type, or you simply want more options—we've got you covered.</p>
+                    <div class="persona-needs">
+                        <h4>Common reasons merchants choose us</h4>
+                        <ul class="persona-needs-list">
+                            <li>Your product category isn't supported by Shopify Payments</li>
+                            <li>You want a dedicated payment partner, not just a feature</li>
+                            <li>You need more flexibility with reserves and settlements</li>
+                            <li>You're looking for better rates as you scale</li>
+                        </ul>
+                    </div>
+                    <a href="#cta" class="btn btn-primary persona-cta">
+                        Let's Find Your Solution
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-card-header">
+                        <div class="persona-card-icon">🛍️</div>
+                        <div>
+                            <span class="persona-card-title">What we offer Shopify merchants</span>
+                            <span class="persona-card-subtitle">Seamless integration, personal support</span>
+                        </div>
+                    </div>
+                    <div class="persona-benefits">
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Easy Shopify Integration</h4>
+                                <p>Works smoothly with your existing Shopify store—no complicated setup or migration headaches.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Category-Friendly Processing</h4>
+                                <p>We work with merchants across many categories, including those that need specialized support.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Transparent, Competitive Rates</h4>
+                                <p>Fair pricing that makes sense for your business, with room to grow as you scale.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Your Own Dedicated Team</h4>
+                                <p>Real people who know your business and are there when you need them.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WooCommerce Persona -->
+            <div class="persona-content" id="woocommerce">
+                <div class="persona-info">
+                    <span class="persona-label">🔧 For WooCommerce Stores</span>
+                    <h3 class="persona-name">Payments that match your platform.</h3>
+                    <p class="persona-desc">You chose WooCommerce for flexibility and control. Your payment processing should offer the same.</p>
+                    <div class="persona-needs">
+                        <h4>What WooCommerce merchants need</h4>
+                        <ul class="persona-needs-list">
+                            <li>A reliable, well-maintained payment plugin</li>
+                            <li>Competitive rates without compromising on features</li>
+                            <li>Support from people who understand WooCommerce</li>
+                            <li>Modern APIs and clean documentation</li>
+                        </ul>
+                    </div>
+                    <a href="#cta" class="btn btn-primary persona-cta">
+                        See Our WooCommerce Solution
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-card-header">
+                        <div class="persona-card-icon">⚡</div>
+                        <div>
+                            <span class="persona-card-title">What we offer WooCommerce stores</span>
+                            <span class="persona-card-subtitle">Built for developers and merchants alike</span>
+                        </div>
+                    </div>
+                    <div class="persona-benefits">
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Native WooCommerce Plugin</h4>
+                                <p>Clean, actively maintained integration built by developers who care about quality code.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Modern APIs & Webhooks</h4>
+                                <p>RESTful APIs, real-time webhooks, and documentation that actually helps.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Volume-Based Pricing</h4>
+                                <p>Rates that improve as you grow, rewarding your success with better economics.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Same-Day Support</h4>
+                                <p>Phone, Slack, email—reach us however works best. We respond the same day.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscriptions Persona -->
+            <div class="persona-content" id="subscriptions">
+                <div class="persona-info">
+                    <span class="persona-label">🔄 For Subscription Businesses</span>
+                    <h3 class="persona-name">Built for recurring revenue.</h3>
+                    <p class="persona-desc">Subscription businesses have unique needs—higher chargeback rates, complex billing cycles, and cash flow timing. We get it.</p>
+                    <div class="persona-needs">
+                        <h4>Subscription business challenges we solve</h4>
+                        <ul class="persona-needs-list">
+                            <li>Unpredictable fund holds disrupting operations</li>
+                            <li>Failed rebills hurting retention rates</li>
+                            <li>Chargeback patterns that worry other processors</li>
+                            <li>Reserve requirements that strain cash flow</li>
+                        </ul>
+                    </div>
+                    <a href="#cta" class="btn btn-primary persona-cta">
+                        Talk to a Subscription Specialist
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-card-header">
+                        <div class="persona-card-icon">📦</div>
+                        <div>
+                            <span class="persona-card-title">What we offer subscription businesses</span>
+                            <span class="persona-card-subtitle">Designed for recurring revenue models</span>
+                        </div>
+                    </div>
+                    <div class="persona-benefits">
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Predictable Fund Flow</h4>
+                                <p>Consistent settlement schedules so you can plan operations with confidence.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Smart Retry Logic</h4>
+                                <p>Intelligent dunning that recovers failed payments and reduces involuntary churn.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Proactive Chargeback Tools</h4>
+                                <p>Early alerts and rapid response tools to help you stay ahead of disputes.</p>
+                            </div>
+                        </div>
+                        <div class="persona-benefit">
+                            <div class="persona-benefit-check">✓</div>
+                            <div>
+                                <h4>Flexible Reserve Terms</h4>
+                                <p>Reserve structures that make sense for recurring models, with clear release schedules.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features-header">
+                <span class="section-label">Features</span>
+                <h2>Everything you need to succeed.</h2>
+                <p class="features-subtitle">Modern tools and support designed to help your business thrive.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-card-icon">📊</div>
+                    <h3>Real-Time Dashboard</h3>
+                    <p>Track transactions, monitor trends, and access the insights you need—all in one clean interface.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🔌</div>
+                    <h3>Easy Integrations</h3>
+                    <p>Seamless connections to Shopify, WooCommerce, and custom platforms. We handle the technical work.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">🛡️</div>
+                    <h3>Fraud Protection</h3>
+                    <p>Smart tools to help identify and prevent fraudulent transactions before they become a problem.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">💬</div>
+                    <h3>Dedicated Support</h3>
+                    <p>Your own account team who knows your business and responds the same day. Always.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">📱</div>
+                    <h3>Mobile-Ready</h3>
+                    <p>Manage your payments from anywhere with our mobile-optimized dashboard.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-card-icon">📈</div>
+                    <h3>Growth-Friendly Pricing</h3>
+                    <p>Transparent rates that improve as you scale. Your success is our success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials-header">
+                <span class="section-label">What Merchants Say</span>
+                <h2>Trusted by growing businesses.</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"PayISO made switching from Shopify Payments completely painless. Their team walked us through everything and we were up and running in days."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SR</div>
+                        <div class="testimonial-info">
+                            <h4>Sarah R.</h4>
+                            <p>Founder, Artisan Goods Co.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Finally, a WooCommerce payment solution that actually works. The plugin is solid and when I had questions, I got a real person on the phone within an hour."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MK</div>
+                        <div class="testimonial-info">
+                            <h4>Michael K.</h4>
+                            <p>CTO, Outdoor Essentials</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Our subscription box business has unique challenges. PayISO took the time to understand our model and built a solution that actually fits how we operate."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JT</div>
+                        <div class="testimonial-info">
+                            <h4>Jamie T.</h4>
+                            <p>CEO, Monthly Discoveries</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Ready to simplify your payments?</h2>
+                <p class="cta-subtitle">Let's have a conversation about your business and find the right solution together.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-large">
+                        Schedule a Call
+                        <span class="btn-arrow">→</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-large">Contact Us</a>
+                </div>
+                <div class="cta-features">
+                    <span class="cta-feature">
+                        <span class="cta-feature-icon">✓</span>
+                        No commitment required
+                    </span>
+                    <span class="cta-feature">
+                        <span class="cta-feature-icon">✓</span>
+                        Custom pricing for your business
+                    </span>
+                    <span class="cta-feature">
+                        <span class="cta-feature-icon">✓</span>
+                        Quick and easy setup
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-mark">P</span>
+                        PayISO
+                    </a>
+                    <p>Payment processing for unique businesses. We're here to help you grow with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Integrations</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">API Docs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Shopify Merchants</a></li>
+                        <li><a href="#">WooCommerce Stores</a></li>
+                        <li><a href="#">Subscription Businesses</a></li>
+                        <li><a href="#">Specialty Categories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 PayISO. All rights reserved. • <a href="#">Privacy</a> • <a href="#">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Persona tabs
+        const tabs = document.querySelectorAll('.persona-tab');
+        const contents = document.querySelectorAll('.persona-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.querySelectorAll('.why-card, .how-step, .feature-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
