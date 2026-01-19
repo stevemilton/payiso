@@ -3,53 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayISO — Payment Apps for Shopify & WooCommerce</title>
+    <title>PayISO — Payments That Grow With You</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-bg: #ffffff;
-            --color-bg-subtle: #f8fafc;
-            --color-bg-muted: #f1f5f9;
-            --color-bg-dark: #0f172a;
-            --color-bg-dark-subtle: #1e293b;
-            --color-primary: #6366f1;
-            --color-primary-light: #818cf8;
-            --color-primary-dark: #4f46e5;
-            --color-primary-dim: rgba(99, 102, 241, 0.1);
-            --color-accent: #06b6d4;
-            --color-accent-dim: rgba(6, 182, 212, 0.1);
-            --color-success: #10b981;
-            --color-success-dim: rgba(16, 185, 129, 0.1);
-            --color-text: #0f172a;
-            --color-text-secondary: #475569;
-            --color-text-muted: #64748b;
-            --color-text-dim: #94a3b8;
+            --color-surface: #f8fafc;
+            --color-surface-alt: #f1f5f9;
             --color-border: #e2e8f0;
             --color-border-light: #f1f5f9;
-            --font-display: 'Space Grotesk', sans-serif;
-            --font-body: 'Inter', -apple-system, sans-serif;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2.5rem;
-            --spacing-xl: 5rem;
-            --spacing-2xl: 8rem;
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
-            --shadow-xl: 0 24px 60px rgba(0, 0, 0, 0.15);
+            --color-text: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-muted: #94a3b8;
+            --color-primary: #6366f1;
+            --color-primary-light: #a5b4fc;
+            --color-primary-bg: #eef2ff;
+            --color-success: #10b981;
+            --color-success-bg: #ecfdf5;
+            --color-shopify: #5c6ac4;
+            --color-woo: #7f54b3;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -57,31 +45,17 @@
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: var(--font-main);
             background: var(--color-bg);
             color: var(--color-text);
             line-height: 1.6;
-            overflow-x: hidden;
-            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Typography */
-        h1, h2, h3 {
-            font-family: var(--font-display);
-            font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        /* Container */
         .container {
-            max-width: 1180px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-
-        .container-narrow {
-            max-width: 800px;
+            padding: 0 2rem;
         }
 
         /* Navigation */
@@ -91,132 +65,105 @@
             left: 0;
             right: 0;
             z-index: 100;
-            padding: var(--spacing-sm) 0;
+            padding: 1rem 0;
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--color-border-light);
         }
 
-        .nav-inner {
+        nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: var(--color-text);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
 
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            border-radius: var(--radius-sm);
+        .logo-mark {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .logo-icon svg {
-            width: 18px;
-            height: 18px;
-            fill: white;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
         .nav-links {
             display: flex;
-            gap: var(--spacing-lg);
-            list-style: none;
+            gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
             color: var(--color-text-secondary);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
             color: var(--color-text);
         }
 
-        .nav-cta {
-            display: flex;
-            gap: var(--spacing-sm);
-            align-items: center;
-        }
-
-        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            padding: 0.65rem 1.25rem;
-            border-radius: var(--radius-md);
-            font-family: var(--font-body);
-            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
+            transition: all 0.2s;
             cursor: pointer;
             border: none;
-            transition: all 0.2s ease;
         }
 
         .btn-primary {
-            background: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
             color: white;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
         }
 
         .btn-primary:hover {
-            background: var(--color-primary-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--color-text-secondary);
-        }
-
-        .btn-secondary:hover {
-            color: var(--color-text);
-            background: var(--color-bg-muted);
-        }
-
-        .btn-outline {
-            background: white;
+            background: var(--color-surface);
             color: var(--color-text);
             border: 1px solid var(--color-border);
         }
 
-        .btn-outline:hover {
-            border-color: var(--color-text-muted);
-            background: var(--color-bg-subtle);
+        .btn-secondary:hover {
+            background: var(--color-surface-alt);
+            border-color: var(--color-border);
         }
 
         .btn-large {
-            padding: 0.85rem 1.75rem;
+            padding: 1rem 2rem;
             font-size: 1rem;
-        }
-
-        .btn-icon {
-            width: 20px;
-            height: 20px;
+            border-radius: var(--radius-md);
         }
 
         /* Hero Section */
         .hero {
-            padding: 10rem 0 var(--spacing-xl);
-            text-align: center;
+            padding: 10rem 0 6rem;
             position: relative;
             overflow: hidden;
         }
@@ -227,54 +174,57 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, var(--color-bg-subtle) 0%, var(--color-bg) 100%);
+            background: 
+                radial-gradient(ellipse 80% 60% at 50% 0%, var(--color-primary-bg), transparent 70%),
+                radial-gradient(ellipse 50% 40% at 90% 20%, rgba(139, 92, 246, 0.08), transparent);
             z-index: -1;
         }
 
-        .hero-grid {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1400px;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--color-border-light) 1px, transparent 1px),
-                linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
-            background-size: 80px 80px;
-            mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
-            opacity: 0.7;
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 0.9rem;
+            padding: 0.5rem 1rem;
             background: white;
             border: 1px solid var(--color-border);
             border-radius: 100px;
             font-size: 0.85rem;
-            font-weight: 500;
             color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
+            margin-bottom: 1.5rem;
             box-shadow: var(--shadow-sm);
         }
 
-        .hero-badge-icon {
-            width: 18px;
-            height: 18px;
+        .hero-badge svg {
+            color: var(--color-success);
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 3.75rem);
-            max-width: 800px;
-            margin: 0 auto var(--spacing-md);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
         }
 
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -283,808 +233,674 @@
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--color-text-secondary);
-            max-width: 600px;
-            margin: 0 auto var(--spacing-lg);
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
-        .hero-ctas {
+        .hero-cta {
             display: flex;
-            justify-content: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-xl);
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
         }
 
-        .hero-platforms {
+        .hero-trust {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: var(--spacing-lg);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--color-border-light);
-            max-width: 500px;
-            margin: 0 auto;
+            gap: 1.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
         }
 
-        .hero-platform {
+        .trust-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             font-size: 0.9rem;
-            color: var(--color-text-muted);
+            color: var(--color-text-secondary);
         }
 
-        .hero-platform-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: var(--radius-sm);
+        .trust-item svg {
+            color: var(--color-success);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeIn 0.6s ease-out 0.2s both;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border-light);
+        }
+
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .hero-card-title {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .hero-card-status {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--color-success-bg);
+            color: var(--color-success);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hero-card-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--color-success);
+            border-radius: 50%;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .metric-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .metric-value.highlight {
+            color: var(--color-primary);
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 4rem 0;
+            border-top: 1px solid var(--color-border-light);
+            border-bottom: 1px solid var(--color-border-light);
+            background: var(--color-surface);
+        }
+
+        .partners .container {
+            text-align: center;
+        }
+
+        .partners-label {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .partners-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            opacity: 0.6;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .partner-logo .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .partner-logo.shopify .icon { background: var(--color-shopify); }
+        .partner-logo.woo .icon { background: var(--color-woo); }
+        .partner-logo.fiserv .icon { background: #ff6600; }
+
+        /* Value Props Section */
+        .value-props {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.85rem;
+            background: var(--color-primary-bg);
+            color: var(--color-primary);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            border-color: var(--color-primary-light);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--color-primary-bg);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .value-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 6rem 0;
+            background: var(--color-surface);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--color-border-light);
+            transition: all 0.3s;
+        }
+
+        .step-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 1rem;
+            margin: 0 auto 1.25rem;
         }
 
-        .hero-platform-icon.shopify {
-            background: #96bf48;
-            color: white;
-        }
-
-        .hero-platform-icon.woo {
-            background: #9b5c8f;
-            color: white;
-        }
-
-        /* Product Screenshot */
-        .hero-product {
-            margin-top: var(--spacing-xl);
-            position: relative;
-        }
-
-        .product-window {
-            background: var(--color-bg-dark);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            max-width: 1000px;
-            margin: 0 auto;
-            border: 1px solid var(--color-bg-dark-subtle);
-        }
-
-        .product-window-bar {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
-            background: var(--color-bg-dark-subtle);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .window-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .window-dot.red { background: #ff5f57; }
-        .window-dot.yellow { background: #ffbd2e; }
-        .window-dot.green { background: #28c840; }
-
-        .product-window-content {
-            padding: var(--spacing-md);
-        }
-
-        .product-dashboard {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: var(--spacing-md);
-            min-height: 400px;
-        }
-
-        .product-sidebar {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-sm);
-        }
-
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            border-radius: var(--radius-sm);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .sidebar-item.active {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        .sidebar-icon {
-            width: 18px;
-            height: 18px;
-            opacity: 0.7;
-        }
-
-        .sidebar-item.active .sidebar-icon {
-            opacity: 1;
-        }
-
-        .product-main {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-
-        .product-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--spacing-sm);
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-sm);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-value {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
+        .step-card h3 {
+            font-size: 1.05rem;
             font-weight: 600;
-            color: white;
-        }
-
-        .stat-change {
-            font-size: 0.75rem;
-            color: var(--color-success);
-            margin-top: 0.25rem;
-        }
-
-        .product-chart {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: var(--spacing-md);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .chart-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: white;
-        }
-
-        .chart-tabs {
-            display: flex;
-            gap: 0.25rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.25rem;
-            border-radius: var(--radius-sm);
-        }
-
-        .chart-tab {
-            padding: 0.35rem 0.75rem;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.6);
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .chart-tab.active {
-            background: var(--color-primary);
-            color: white;
-        }
-
-        .chart-visual {
-            height: 150px;
-            position: relative;
-            margin-top: var(--spacing-sm);
-        }
-
-        .chart-bars {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            height: 100%;
-            gap: 8px;
-        }
-
-        .chart-bar {
-            flex: 1;
-            background: linear-gradient(to top, var(--color-primary) 0%, var(--color-primary-light) 100%);
-            border-radius: 4px 4px 0 0;
-            opacity: 0.8;
-        }
-
-        /* Logos Section */
-        .logos {
-            padding: var(--spacing-xl) 0;
-            border-bottom: 1px solid var(--color-border-light);
-        }
-
-        .logos-label {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .logos-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: var(--spacing-xl);
-            flex-wrap: wrap;
-            opacity: 0.5;
-        }
-
-        .logos-grid span {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--color-text-muted);
-        }
-
-        /* Features Section */
-        .features {
-            padding: var(--spacing-2xl) 0;
-        }
-
-        .features-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto var(--spacing-xl);
-        }
-
-        .section-label {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .features h2 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .features-subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-md);
-        }
-
-        .feature-card {
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--color-border);
-            transition: all 0.2s ease;
-        }
-
-        .feature-card:hover {
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-dim);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--color-primary-dim);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--spacing-sm);
-            font-size: 1.25rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
-        .feature-card p {
-            font-size: 0.95rem;
+        .step-card p {
+            font-size: 0.9rem;
             color: var(--color-text-secondary);
+        }
+
+        .step-connector {
+            position: absolute;
+            top: 50%;
+            right: -1.5rem;
+            width: 1.5rem;
+            height: 2px;
+            background: var(--color-border);
+        }
+
+        .step-card:last-child .step-connector {
+            display: none;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .pricing-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .description {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-rate {
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+
+        .rate-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .rate-suffix {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .pricing-features li svg {
+            color: var(--color-success);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
         }
 
         /* Platforms Section */
-        .platforms {
-            padding: var(--spacing-2xl) 0;
-            background: var(--color-bg-subtle);
+        .platforms-section {
+            padding: 6rem 0;
+            background: var(--color-surface);
         }
 
-        .platforms-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto var(--spacing-xl);
-        }
-
-        .platforms h2 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .platforms-subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-        }
-
-        .platform-cards {
+        .platforms-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--spacing-md);
-            max-width: 900px;
-            margin: 0 auto;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
 
         .platform-card {
             background: white;
             border-radius: var(--radius-xl);
-            padding: var(--spacing-lg);
+            padding: 2.5rem;
             border: 1px solid var(--color-border);
-            transition: all 0.2s ease;
+            transition: all 0.3s;
         }
 
         .platform-card:hover {
             box-shadow: var(--shadow-md);
-            transform: translateY(-4px);
         }
 
-        .platform-card-header {
+        .platform-card.shopify:hover {
+            border-color: var(--color-shopify);
+        }
+
+        .platform-card.woo:hover {
+            border-color: var(--color-woo);
+        }
+
+        .platform-header {
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-md);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .platform-logo {
-            width: 48px;
-            height: 48px;
+        .platform-icon {
+            width: 56px;
+            height: 56px;
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 1.25rem;
             color: white;
+            font-weight: 800;
+            font-size: 1.5rem;
         }
 
-        .platform-logo.shopify {
-            background: #96bf48;
+        .platform-card.shopify .platform-icon {
+            background: linear-gradient(135deg, var(--color-shopify), #7c3aed);
         }
 
-        .platform-logo.woo {
-            background: #9b5c8f;
+        .platform-card.woo .platform-icon {
+            background: linear-gradient(135deg, var(--color-woo), #a855f7);
         }
 
-        .platform-name {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 600;
+        .platform-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        .platform-tagline {
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
+        .platform-card > p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .platform-features {
             list-style: none;
-            margin-bottom: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .platform-features li {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 0.75rem;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid var(--color-border-light);
             font-size: 0.95rem;
-            color: var(--color-text-secondary);
         }
 
-        .platform-features li:last-child {
-            border-bottom: none;
+        .platform-features li svg {
+            flex-shrink: 0;
         }
 
-        .platform-check {
-            width: 20px;
-            height: 20px;
-            min-width: 20px;
-            background: var(--color-success-dim);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-success);
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-top: 2px;
+        .platform-card.shopify .platform-features li svg {
+            color: var(--color-shopify);
         }
 
-        .platform-cta {
-            width: 100%;
-        }
-
-        /* Use Cases Section */
-        .use-cases {
-            padding: var(--spacing-2xl) 0;
-        }
-
-        .use-cases-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto var(--spacing-xl);
-        }
-
-        .use-cases h2 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .use-cases-subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-        }
-
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-md);
-        }
-
-        .use-case-card {
-            background: var(--color-bg-subtle);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
-            text-align: center;
-        }
-
-        .use-case-icon {
-            width: 64px;
-            height: 64px;
-            background: white;
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto var(--spacing-sm);
-            font-size: 1.75rem;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .use-case-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .use-case-card p {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-        }
-
-        /* How It Works */
-        .how-it-works {
-            padding: var(--spacing-2xl) 0;
-            background: var(--color-bg-dark);
-            color: white;
-        }
-
-        .how-it-works-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto var(--spacing-xl);
-        }
-
-        .how-it-works .section-label {
-            color: var(--color-accent);
-        }
-
-        .how-it-works h2 {
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .how-it-works-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--spacing-md);
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step::after {
-            content: '';
-            position: absolute;
-            top: 28px;
-            right: -50%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%);
-            opacity: 0.3;
-        }
-
-        .step:last-child::after {
-            display: none;
-        }
-
-        .step-number {
-            width: 56px;
-            height: 56px;
-            background: var(--color-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0 auto var(--spacing-sm);
-            position: relative;
-            z-index: 1;
-        }
-
-        .step h3 {
-            font-size: 1rem;
-            margin-bottom: 0.35rem;
-        }
-
-        .step p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Pricing Teaser */
-        .pricing-teaser {
-            padding: var(--spacing-2xl) 0;
-        }
-
-        .pricing-card {
-            background: linear-gradient(135deg, var(--color-bg-subtle) 0%, white 100%);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-xl);
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .pricing-card h2 {
-            font-size: clamp(1.75rem, 3vw, 2.25rem);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .pricing-card-subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .pricing-highlights {
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-lg);
-            flex-wrap: wrap;
-        }
-
-        .pricing-highlight {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-        }
-
-        .pricing-highlight-icon {
-            color: var(--color-success);
+        .platform-card.woo .platform-features li svg {
+            color: var(--color-woo);
         }
 
         /* CTA Section */
         .cta {
-            padding: var(--spacing-2xl) 0;
-            background: var(--color-bg-subtle);
+            padding: 6rem 0;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+            border-radius: var(--radius-xl);
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
         }
 
         .cta-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .cta h2 {
             font-size: clamp(2rem, 4vw, 2.75rem);
-            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
         }
 
-        .cta-subtitle {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-lg);
+        .cta p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 500px;
+            margin: 0 auto 2rem;
         }
 
         .cta-buttons {
             display: flex;
+            gap: 1rem;
             justify-content: center;
-            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .cta .btn-white {
+            background: white;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .cta .btn-white:hover {
+            background: rgba(255,255,255,0.95);
+            transform: translateY(-2px);
+        }
+
+        .cta .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .cta .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.6);
         }
 
         /* Footer */
         footer {
-            padding: var(--spacing-xl) 0 var(--spacing-lg);
-            background: var(--color-bg-dark);
-            color: white;
+            padding: 3rem 0;
+            border-top: 1px solid var(--color-border-light);
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .footer-brand .logo {
-            color: white;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .footer-brand p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            max-width: 260px;
-        }
-
-        .footer-col h4 {
-            font-family: var(--font-body);
-            font-weight: 600;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .footer-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
+        footer .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .footer-bottom p {
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text);
+        }
+
+        .footer-copy {
+            color: var(--color-text-muted);
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .footer-bottom a {
-            color: rgba(255, 255, 255, 0.4);
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .product-dashboard {
+            .hero .container {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .product-sidebar {
-                display: none;
+            .hero-cta {
+                justify-content: center;
             }
 
-            .features-grid,
-            .use-cases-grid {
+            .hero-trust {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .value-grid, .pricing-grid {
                 grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
             }
 
-            .platform-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .step::after {
-                display: none;
-            }
-
-            .footer-grid {
+            .steps-container {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .step-connector {
+                display: none;
+            }
+
+            .platforms-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-links a:not(.btn) {
                 display: none;
             }
 
-            .hero-ctas,
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-platforms {
-                flex-direction: column;
-                gap: var(--spacing-sm);
-            }
-
-            .product-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .steps {
+            .steps-container {
                 grid-template-columns: 1fr;
             }
 
-            .pricing-highlights {
-                flex-direction: column;
-                align-items: center;
+            .partners-logos {
+                gap: 2rem;
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
+            footer .container {
                 flex-direction: column;
-                gap: var(--spacing-sm);
+                gap: 1.5rem;
                 text-align: center;
+            }
+
+            .cta-card {
+                padding: 3rem 2rem;
             }
         }
     </style>
@@ -1092,140 +908,76 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="container nav-inner">
+        <div class="container">
             <a href="#" class="logo">
-                <span class="logo-icon">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </span>
+                <span class="logo-mark">P</span>
                 PayISO
             </a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#platforms">Platforms</a></li>
-                <li><a href="#use-cases">Use Cases</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#">Docs</a></li>
-            </ul>
-            <div class="nav-cta">
-                <a href="#" class="btn btn-secondary">Sign In</a>
-                <a href="#" class="btn btn-primary">Get Started</a>
+            <div class="nav-links">
+                <a href="#why">Why PayISO</a>
+                <a href="#how">How It Works</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#platforms">Platforms</a>
+                <a href="#" class="btn btn-primary">Get Started Free</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg">
-            <div class="hero-grid"></div>
-        </div>
+        <div class="hero-bg"></div>
         <div class="container">
-            <div class="hero-badge">
-                <svg class="hero-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                PCI-DSS Level 1 Compliant
-            </div>
-            <h1>The payment app for <span class="highlight">Shopify & WooCommerce</span></h1>
-            <p class="hero-subtitle">A simple, reliable payment processing app for merchants who need an alternative to default options or have unique business requirements.</p>
-            <div class="hero-ctas">
-                <a href="#" class="btn btn-primary btn-large">
-                    Install on Shopify
-                </a>
-                <a href="#" class="btn btn-outline btn-large">
-                    Get WooCommerce Plugin
-                </a>
-            </div>
-            <div class="hero-platforms">
-                <div class="hero-platform">
-                    <span class="hero-platform-icon shopify">S</span>
-                    Shopify App Store
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Trusted by 1,000+ e-commerce stores
                 </div>
-                <div class="hero-platform">
-                    <span class="hero-platform-icon woo">W</span>
-                    WordPress Plugin
+                <h1>Payments that <span>grow with you</span></h1>
+                <p class="hero-subtitle">Your business is unique. Your payment processor should get that. We partner with Shopify and WooCommerce merchants to find the right rates, right features, and right fit — so you can focus on selling.</p>
+                <div class="hero-cta">
+                    <a href="#" class="btn btn-primary btn-large">
+                        See Your Rate
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="#how" class="btn btn-secondary btn-large">How It Works</a>
                 </div>
-            </div>
-
-            <!-- Product Screenshot -->
-            <div class="hero-product">
-                <div class="product-window">
-                    <div class="product-window-bar">
-                        <span class="window-dot red"></span>
-                        <span class="window-dot yellow"></span>
-                        <span class="window-dot green"></span>
+                <div class="hero-trust">
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        No setup fees
                     </div>
-                    <div class="product-window-content">
-                        <div class="product-dashboard">
-                            <div class="product-sidebar">
-                                <div class="sidebar-item active">
-                                    <span class="sidebar-icon">📊</span>
-                                    Dashboard
-                                </div>
-                                <div class="sidebar-item">
-                                    <span class="sidebar-icon">💳</span>
-                                    Transactions
-                                </div>
-                                <div class="sidebar-item">
-                                    <span class="sidebar-icon">📈</span>
-                                    Analytics
-                                </div>
-                                <div class="sidebar-item">
-                                    <span class="sidebar-icon">⚙️</span>
-                                    Settings
-                                </div>
-                                <div class="sidebar-item">
-                                    <span class="sidebar-icon">📄</span>
-                                    Reports
-                                </div>
-                            </div>
-                            <div class="product-main">
-                                <div class="product-stats">
-                                    <div class="stat-card">
-                                        <div class="stat-label">Today's Volume</div>
-                                        <div class="stat-value">$12,847</div>
-                                        <div class="stat-change">↑ 12% vs yesterday</div>
-                                    </div>
-                                    <div class="stat-card">
-                                        <div class="stat-label">Transactions</div>
-                                        <div class="stat-value">284</div>
-                                        <div class="stat-change">↑ 8% vs yesterday</div>
-                                    </div>
-                                    <div class="stat-card">
-                                        <div class="stat-label">Approval Rate</div>
-                                        <div class="stat-value">98.2%</div>
-                                        <div class="stat-change">↑ 0.3% this week</div>
-                                    </div>
-                                    <div class="stat-card">
-                                        <div class="stat-label">Avg. Transaction</div>
-                                        <div class="stat-value">$45.24</div>
-                                        <div class="stat-change">↑ 5% this week</div>
-                                    </div>
-                                </div>
-                                <div class="product-chart">
-                                    <div class="chart-header">
-                                        <span class="chart-title">Transaction Volume</span>
-                                        <div class="chart-tabs">
-                                            <span class="chart-tab">Day</span>
-                                            <span class="chart-tab active">Week</span>
-                                            <span class="chart-tab">Month</span>
-                                        </div>
-                                    </div>
-                                    <div class="chart-visual">
-                                        <div class="chart-bars">
-                                            <div class="chart-bar" style="height: 45%;"></div>
-                                            <div class="chart-bar" style="height: 60%;"></div>
-                                            <div class="chart-bar" style="height: 52%;"></div>
-                                            <div class="chart-bar" style="height: 78%;"></div>
-                                            <div class="chart-bar" style="height: 65%;"></div>
-                                            <div class="chart-bar" style="height: 85%;"></div>
-                                            <div class="chart-bar" style="height: 92%;"></div>
-                                            <div class="chart-bar" style="height: 70%;"></div>
-                                            <div class="chart-bar" style="height: 88%;"></div>
-                                            <div class="chart-bar" style="height: 75%;"></div>
-                                            <div class="chart-bar" style="height: 95%;"></div>
-                                            <div class="chart-bar" style="height: 82%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Fast approvals
+                    </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Real human support
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <span class="hero-card-title">Your Store Dashboard</span>
+                        <span class="hero-card-status">Live</span>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Today's Sales</div>
+                            <div class="metric-value">$2,847</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Your Rate</div>
+                            <div class="metric-value highlight">2.4%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">This Month</div>
+                            <div class="metric-value">$48.2K</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Saved vs Stripe</div>
+                            <div class="metric-value highlight">$241</div>
                         </div>
                     </div>
                 </div>
@@ -1233,222 +985,257 @@
         </div>
     </section>
 
-    <!-- Logos Section -->
-    <section class="logos">
+    <!-- Partners Section -->
+    <section class="partners">
         <div class="container">
-            <p class="logos-label">Trusted by merchants processing millions monthly</p>
-            <div class="logos-grid">
-                <span>Acme Co</span>
-                <span>Globex</span>
-                <span>Initech</span>
-                <span>Umbrella</span>
-                <span>Hooli</span>
+            <p class="partners-label">Powering e-commerce on the platforms you love</p>
+            <div class="partners-logos">
+                <div class="partner-logo shopify">
+                    <span class="icon">S</span>
+                    Shopify
+                </div>
+                <div class="partner-logo woo">
+                    <span class="icon">W</span>
+                    WooCommerce
+                </div>
+                <div class="partner-logo fiserv">
+                    <span class="icon">F</span>
+                    Fiserv
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- Value Props Section -->
+    <section class="value-props" id="why">
         <div class="container">
-            <div class="features-header">
-                <span class="section-label">Features</span>
-                <h2>Everything you need in a payment app</h2>
-                <p class="features-subtitle">A complete payment processing solution that installs in minutes and just works.</p>
+            <div class="section-header">
+                <span class="section-label">Why PayISO</span>
+                <h2>Built around your business, not ours</h2>
+                <p>We believe every merchant deserves a payment partner who actually understands their business.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>5-Minute Setup</h3>
-                    <p>Install the app, connect your account, and start processing. No complex integration or developer time required.</p>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">💰</div>
+                    <h3>Rates That Make Sense</h3>
+                    <p>We look at your actual business to find the best rate — not a one-size-fits-all number. Many merchants save 0.3-0.5% compared to standard processors.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Real-Time Dashboard</h3>
-                    <p>Track transactions, monitor approval rates, and view analytics—all from a clean, intuitive interface.</p>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Fast, Human Approvals</h3>
+                    <p>Our smart onboarding gets you set up quickly, and when you need help, you talk to real people who understand e-commerce.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Automatic Sync</h3>
-                    <p>Orders, refunds, and payouts sync automatically with your store. No manual reconciliation needed.</p>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>A Partner, Not a Gatekeeper</h3>
+                    <p>We succeed when you succeed. That means proactive support, transparent pricing, and no surprises on your statement.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Built-In Fraud Tools</h3>
-                    <p>Smart fraud detection rules help identify and block suspicious transactions before they become chargebacks.</p>
+                <div class="value-card">
+                    <div class="value-icon">📊</div>
+                    <h3>Insights That Help You Grow</h3>
+                    <p>See exactly what you're paying, spot trends in your sales, and get alerts before small issues become big problems.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔁</div>
-                    <h3>Subscription Support</h3>
-                    <p>Native recurring billing with smart retry logic to recover failed payments and reduce involuntary churn.</p>
+                <div class="value-card">
+                    <div class="value-icon">🔌</div>
+                    <h3>Seamless Integration</h3>
+                    <p>Native apps for Shopify and WooCommerce. Install in minutes, not days. Your orders, refunds, and payouts just work.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Optimized</h3>
-                    <p>Checkout flows designed for conversion on any device. Fast, responsive, and tested across browsers.</p>
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3>Room to Grow</h3>
+                    <p>Start where you are, scale where you're going. As your business evolves, we evolve with you — better rates, more features, same great support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">How It Works</span>
+                <h2>Up and running in 4 simple steps</h2>
+                <p>No paperwork avalanche. No waiting weeks. Just a straightforward path to better payments.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Install the App</h3>
+                    <p>Add PayISO to your Shopify or WooCommerce store in one click.</p>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Tell Us About You</h3>
+                    <p>Answer a few quick questions so we can find your best rate.</p>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Get Approved</h3>
+                    <p>Most merchants are approved within 24 hours. Often faster.</p>
+                    <div class="step-connector"></div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Start Selling</h3>
+                    <p>Accept payments immediately. Watch your savings add up.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Pricing</span>
+                <h2>Transparent rates, no surprises</h2>
+                <p>Your rate depends on your business. Here's what most merchants pay.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Growing Stores</h3>
+                        <p class="description">For established stores looking to save on every transaction.</p>
+                        <div class="pricing-rate">
+                            <span class="rate-value">2.4%</span>
+                            <span class="rate-suffix">+ $0.25</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Best rates for high-volume sellers
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Ideal for $20K+/month stores
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Priority support
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Advanced analytics
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h3>Most Merchants</h3>
+                        <p class="description">Simple, competitive pricing for stores of all sizes.</p>
+                        <div class="pricing-rate">
+                            <span class="rate-value">2.9%</span>
+                            <span class="rate-suffix">+ $0.30</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Fast, easy approval process
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Perfect for growing businesses
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Full dashboard & reporting
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Dedicated onboarding help
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Specialized Stores</h3>
+                        <p class="description">Custom solutions for unique business models.</p>
+                        <div class="pricing-rate">
+                            <span class="rate-value">3.5%</span>
+                            <span class="rate-suffix">+ $0.30</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Tailored underwriting
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            High-ticket & seasonal friendly
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Flexible reserve options
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            White-glove support
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Talk to Us</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Platforms Section -->
-    <section class="platforms" id="platforms">
+    <section class="platforms-section" id="platforms">
         <div class="container">
-            <div class="platforms-header">
+            <div class="section-header">
                 <span class="section-label">Platforms</span>
-                <h2>Native apps for your platform</h2>
-                <p class="platforms-subtitle">Purpose-built integrations that work seamlessly with your existing store.</p>
+                <h2>Native apps, instant setup</h2>
+                <p>Works right where you already sell. No code required.</p>
             </div>
-            <div class="platform-cards">
-                <div class="platform-card">
-                    <div class="platform-card-header">
-                        <div class="platform-logo shopify">S</div>
-                        <div>
-                            <h3 class="platform-name">Shopify App</h3>
-                            <p class="platform-tagline">For Shopify & Shopify Plus</p>
-                        </div>
+            <div class="platforms-grid">
+                <div class="platform-card shopify">
+                    <div class="platform-header">
+                        <div class="platform-icon">S</div>
+                        <h3>Shopify</h3>
                     </div>
+                    <p>Full integration with your Shopify admin. Install from the App Store and start accepting payments the same day.</p>
                     <ul class="platform-features">
                         <li>
-                            <span class="platform-check">✓</span>
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             One-click install from Shopify App Store
                         </li>
                         <li>
-                            <span class="platform-check">✓</span>
-                            Works alongside or instead of Shopify Payments
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Automatic order and refund sync
                         </li>
                         <li>
-                            <span class="platform-check">✓</span>
-                            Automatic order sync and fulfillment updates
-                        </li>
-                        <li>
-                            <span class="platform-check">✓</span>
-                            Supports all product types and categories
-                        </li>
-                        <li>
-                            <span class="platform-check">✓</span>
-                            Shopify Plus multi-currency support
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Works with Shopify Checkout
                         </li>
                     </ul>
-                    <a href="#" class="btn btn-primary platform-cta">Install Shopify App</a>
                 </div>
-                <div class="platform-card">
-                    <div class="platform-card-header">
-                        <div class="platform-logo woo">W</div>
-                        <div>
-                            <h3 class="platform-name">WooCommerce Plugin</h3>
-                            <p class="platform-tagline">For WordPress & WooCommerce</p>
-                        </div>
+                <div class="platform-card woo">
+                    <div class="platform-header">
+                        <div class="platform-icon">W</div>
+                        <h3>WooCommerce</h3>
                     </div>
+                    <p>Native WordPress plugin with no platform fees. Keep more of your revenue while enjoying seamless integration.</p>
                     <ul class="platform-features">
                         <li>
-                            <span class="platform-check">✓</span>
-                            Download from WordPress plugin directory
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Zero additional platform fees
                         </li>
                         <li>
-                            <span class="platform-check">✓</span>
-                            Clean, actively maintained codebase
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Full control over your checkout
                         </li>
                         <li>
-                            <span class="platform-check">✓</span>
-                            WooCommerce Subscriptions compatible
-                        </li>
-                        <li>
-                            <span class="platform-check">✓</span>
-                            Works with all major themes and builders
-                        </li>
-                        <li>
-                            <span class="platform-check">✓</span>
-                            REST API and webhook support
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M13.5 4.5L6.5 11.5L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Compatible with popular themes
                         </li>
                     </ul>
-                    <a href="#" class="btn btn-primary platform-cta">Download Plugin</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Use Cases Section -->
-    <section class="use-cases" id="use-cases">
-        <div class="container">
-            <div class="use-cases-header">
-                <span class="section-label">Use Cases</span>
-                <h2>Built for merchants with unique needs</h2>
-                <p class="use-cases-subtitle">Whether you need an alternative processor or have specific business requirements, PayISO fits your workflow.</p>
-            </div>
-            <div class="use-cases-grid">
-                <div class="use-case-card">
-                    <div class="use-case-icon">🔀</div>
-                    <h3>Alternative to Default Payments</h3>
-                    <p>Want options beyond Shopify Payments or WooPayments? Add PayISO as your primary or backup processor.</p>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-icon">📦</div>
-                    <h3>Subscription & Recurring</h3>
-                    <p>Subscription boxes, memberships, and recurring billing with smart retry logic built in.</p>
-                </div>
-                <div class="use-case-card">
-                    <div class="use-case-icon">🏷️</div>
-                    <h3>Specialty Categories</h3>
-                    <p>Supplements, CBD, alcohol, and other categories that need a processor built for their requirements.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <div class="container">
-            <div class="how-it-works-header">
-                <span class="section-label">How It Works</span>
-                <h2>Live in minutes, not days</h2>
-                <p class="how-it-works-subtitle">Get up and running with a few clicks. No developer required.</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Install the App</h3>
-                    <p>Add PayISO from your platform's app store or plugin directory.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Connect Your Account</h3>
-                    <p>Quick onboarding to verify your business and set up your merchant account.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Configure Settings</h3>
-                    <p>Set your preferences for checkout, notifications, and fraud rules.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Start Processing</h3>
-                    <p>Go live and start accepting payments immediately.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Teaser -->
-    <section class="pricing-teaser" id="pricing">
-        <div class="container">
-            <div class="pricing-card">
-                <h2>Simple, transparent pricing</h2>
-                <p class="pricing-card-subtitle">Competitive rates with no hidden fees. Pricing that scales with your business.</p>
-                <div class="pricing-highlights">
-                    <span class="pricing-highlight">
-                        <span class="pricing-highlight-icon">✓</span>
-                        No setup fees
-                    </span>
-                    <span class="pricing-highlight">
-                        <span class="pricing-highlight-icon">✓</span>
-                        No monthly minimums
-                    </span>
-                    <span class="pricing-highlight">
-                        <span class="pricing-highlight-icon">✓</span>
-                        Volume discounts available
-                    </span>
-                </div>
-                <a href="#" class="btn btn-primary btn-large">View Pricing</a>
             </div>
         </div>
     </section>
@@ -1456,12 +1243,17 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to get started?</h2>
-                <p class="cta-subtitle">Install PayISO and start processing payments in minutes.</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary btn-large">Install on Shopify</a>
-                    <a href="#" class="btn btn-outline btn-large">Get WooCommerce Plugin</a>
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2>Ready to grow with a payment partner who gets it?</h2>
+                    <p>See your personalized rate in 2 minutes. No commitment, no credit check.</p>
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-white btn-large">
+                            See Your Rate
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                        <a href="#" class="btn btn-outline btn-large">Talk to Our Team</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1470,47 +1262,17 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <span class="logo-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </span>
-                        PayISO
-                    </a>
-                    <p>Payment processing apps for Shopify and WooCommerce merchants.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Product</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Shopify App</a></li>
-                        <li><a href="#">WooCommerce Plugin</a></li>
-                        <li><a href="#">Pricing</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Developers</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API Reference</a></li>
-                        <li><a href="#">Webhooks</a></li>
-                        <li><a href="#">Status</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                </div>
+            <a href="#" class="logo">
+                <span class="logo-mark">P</span>
+                PayISO
+            </a>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+                <a href="#">Help Center</a>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 PayISO. All rights reserved. • <a href="#">Privacy</a> • <a href="#">Terms</a></p>
-            </div>
+            <span class="footer-copy">© 2026 PayISO</span>
         </div>
     </footer>
 </body>
